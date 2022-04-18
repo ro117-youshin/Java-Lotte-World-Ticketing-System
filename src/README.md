@@ -1,2 +1,0 @@
-# LotteWorldTicketinginJava
-Test
