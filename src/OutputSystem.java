@@ -1,8 +1,10 @@
 package lotteworldticketing;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,11 +12,11 @@ import java.util.Scanner;
 
 public class OutputSystem {
 	ArrayList<OrderData> orderList = new ArrayList<OrderData>();
-	InputSystem inputTicketSystem = new InputSystem();
 	OrderData orderItem = null;
+	InputSystem inputTicketSystem = new InputSystem();
 	Calculate cal = new Calculate();
 	PrintOut print = new PrintOut();
-	
+	WriteToCSV writeCsv = new WriteToCSV();
 	Scanner sc = new Scanner(System.in);
 
 	public void continueButtonPrintOut() {
@@ -51,10 +53,8 @@ public class OutputSystem {
 		createCSV(writeCsv);
 	}
 
-	WriteToCSV writeCsv = new WriteToCSV();
-	
-	void createCSV (WriteToCSV writeCsv) {
-		File csvFile = new File("C:\\Users\\YOUSHIN KIM\\Desktop\\LotteWorldTicketCSV\\test.txt");
+	void createCSV(WriteToCSV writeCsv) {
+		File csvFile = new File("C:\\Users\\YOUSHIN KIM\\Desktop\\LotteWorldTicketCSV\\test.csv");
 		BufferedWriter bw = null;
 
 		try {
@@ -65,17 +65,18 @@ public class OutputSystem {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-		} finally {
-			try {
-				if (bw != null) {
-					bw.flush();
-					bw.close();
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
 		}
 	}
+//	} finally {
+//		try {
+//			if (bw != null) {
+//				bw.flush();
+//				bw.close();
+//			}
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//	}
 	
 	public void resetTicketSystem() {
 		orderList = new ArrayList<OrderData>();
@@ -84,7 +85,7 @@ public class OutputSystem {
 		orderItem = new OrderData();
 		print = new PrintOut();
 	}
-	
+
 	public void inputDatainArrayList() {
 		orderList.add(orderItem);
 	}

@@ -3,19 +3,23 @@ package lotteworldticketing;
 import java.util.ArrayList;
 
 public class WriteToCSV {
-	OrderData orderdata = new OrderData();
+	OrderData orderItem = new OrderData();
 	
-	public String csvCount (ArrayList<OrderData> orderList, OrderData orderdata) {
+	public String csvCount (ArrayList<OrderData> orderList, OrderData orderItem) {
+		
 		String str = "";
-		for (int index = 0; index <= orderdata.getOrderCount(); index++) {
+		
+		for (int index = 0; index <= orderItem.getOrderCount() + 1; index++) {
 			str = str + writeToCSV(orderList, index);
 		}
+		
 		return str;
 	}
 
 	public String writeToCSV (ArrayList<OrderData> orderList, int index) {
+		
 		String str = "";
-		//
+		
 		if (orderList.get(index).getTicketType() == StaticValue.TICKET_TYPE_ONE) {
 			str = "종합이용권" + ",";
 		} else if (orderList.get(index).getTicketType() == StaticValue.TICKET_TYPE_TWO) {
