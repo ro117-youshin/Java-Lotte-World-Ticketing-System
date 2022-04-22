@@ -5,11 +5,11 @@ import java.util.ArrayList;
 public class WriteToCSV {
 	OrderData orderItem = new OrderData();
 	
-	public String csvCount (ArrayList<OrderData> orderList, OrderData orderItem) {
+	public String csvCount (ArrayList<OrderData> orderList) {
 		
 		String str = "";
 		
-		for (int index = 0; index <= orderItem.getOrderCount() + 1; index++) {
+		for (int index = 0; index < orderList.size(); index++) {
 			str = str + writeToCSV(orderList, index);
 		}
 		
@@ -19,11 +19,12 @@ public class WriteToCSV {
 	public String writeToCSV (ArrayList<OrderData> orderList, int index) {
 		
 		String str = "";
+		str = orderList.get(index).getOrderDate() + ",";
 		
 		if (orderList.get(index).getTicketType() == StaticValue.TICKET_TYPE_ONE) {
-			str = "종합이용권" + ",";
+			str += "종합이용권" + ",";
 		} else if (orderList.get(index).getTicketType() == StaticValue.TICKET_TYPE_TWO) {
-			str = "파크이용권" + ",";
+			str += "파크이용권" + ",";
 		}
 		
 		if (orderList.get(index).getTicketTimeType() == StaticValue.TICKET_TIME_TYPE_ONE) {

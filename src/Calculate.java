@@ -1,5 +1,6 @@
 package lotteworldticketing;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Scanner;
@@ -14,8 +15,9 @@ public class Calculate {
 	}
 	
 	public void calId(OrderData orderItem) {
-
+		SimpleDateFormat todayDate = new SimpleDateFormat("yyyyMMdd");
 		Calendar cal = Calendar.getInstance();
+		orderItem.setOrderDate(todayDate.format(cal.getTime()));
 		int currentYear = cal.get(Calendar.YEAR);
 		int currentMonth = cal.get(Calendar.MONDAY) + 1;
 		int currentDay = cal.get(Calendar.DATE);

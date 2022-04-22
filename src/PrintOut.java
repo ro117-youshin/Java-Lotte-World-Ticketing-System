@@ -5,9 +5,11 @@ import java.util.ArrayList;
 public class PrintOut {
 	
 	public void printOut(ArrayList<OrderData> orderList, int finalFee) {
-		System.out.printf("=======================LOTTE WORLD=========================\n\n");
-		System.out.printf("이용권\t옵션\t연령\t장수\t가격\t우대사항\n");
+		System.out.printf("==========================LOTTE WORLD=============================\n\n");
+		System.out.printf("날짜\t\t이용권\t옵션\t연령\t장수\t가격\t우대사항\n");
 		for (int index = 0; index < orderList.size(); index++) {
+			printDate(orderList.get(index).getOrderDate());
+			
 			printTicketType(orderList.get(index).getTicketType());
 
 			printTicketTimeType(orderList.get(index).getTicketTimeType());
@@ -20,12 +22,15 @@ public class PrintOut {
 
 			printAdvantageType(orderList.get(index).getAdvantageType());
 		}
-		System.out.printf("\n총액은 %d원 입니다.\n", finalFee);
-		System.out.printf("===========================================================\n");
+		System.out.printf("\n입장료 총액은 %d원 입니다.\n", finalFee);
+		System.out.printf("==================================================================\n");
 		System.out.printf("티켓 구매를 종료합니다. 감사합니다.\n");
 		System.out.printf("\n");
 		System.out.printf("계속 진행하시겠습니까? 1. 새로운 주문 2. 프로그램 종료\n");
 		System.out.printf("\n");
+	}
+	public void printDate (String orderDate) {
+		System.out.printf("%s\t", orderDate);
 	}
 	
 	public void printTicketType (int ticketType) {

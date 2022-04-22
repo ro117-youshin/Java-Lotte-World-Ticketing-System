@@ -14,6 +14,7 @@ public class OrderData {
 	private int totalFee;
 	private int continueButton;
 	private int newOrderButton;
+	private String orderDate;
 	private String menu = "날짜" + "," + "이용권" + "," + "옵션" + "," + "연령" + "," + "장수" + "," + "가격" + "," + "우대사항\n";
 	
 	public int getTicketType() {
@@ -99,5 +100,11 @@ public class OrderData {
 	}
 	public void setMenu(String menu) {
 		this.menu = menu;
+	}
+	public String getOrderDate() {
+		return orderDate;
+	}
+	public void setOrderDate(String orderDate) {
+		this.orderDate = orderDate;
 	}
 }

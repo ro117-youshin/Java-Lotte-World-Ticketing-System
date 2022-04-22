@@ -60,24 +60,23 @@ public class OutputSystem {
 		try {
 			bw = new BufferedWriter(new FileWriter(csvFile, true));
 			bw.write(orderItem.getMenu());
-			bw.write(writeCsv.csvCount(orderList, orderItem));
+			bw.write(writeCsv.csvCount(orderList));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				if (bw != null) {
+					bw.flush();
+					bw.close();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
-//	} finally {
-//		try {
-//			if (bw != null) {
-//				bw.flush();
-//				bw.close();
-//			}
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//	}
-	
+
 	public void resetTicketSystem() {
 		orderList = new ArrayList<OrderData>();
 		inputTicketSystem = new InputSystem();
