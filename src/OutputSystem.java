@@ -54,7 +54,7 @@ public class OutputSystem {
 	}
 
 	void createCSV(WriteToCSV writeCsv) {
-		File csvFile = new File("C:\\Users\\YOUSHIN KIM\\Desktop\\LotteWorldTicketCSV\\test.csv");
+		File csvFile = new File("C:\\Users\\YOUSHIN KIM\\Desktop\\LotteWorldTicketCSV\\Result.csv");
 		BufferedWriter bw = null;
 
 		try {
