@@ -1,10 +1,8 @@
 package lotteworldticketing;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,30 +12,31 @@ public class OutputSystem {
 	ArrayList<OrderData> orderList = new ArrayList<OrderData>();
 	OrderData orderItem = null;
 	InputSystem inputTicketSystem = new InputSystem();
-	Calculate cal = new Calculate();
+	Calculator cal = new Calculator();
 	PrintOut print = new PrintOut();
 	WriteToCSV writeCsv = new WriteToCSV();
 	Scanner sc = new Scanner(System.in);
 
+	//
 	public void continueButtonPrintOut() {
 		resetTicketSystem();
 		do {
 			orderItem = new OrderData();
 			// 입력
 			inputTicketSystem.inputInformation(orderItem);
-
+			// 계산 클래스에서 모든 계산 메소드를
 			cal.calFinal(orderItem);
 			// ArrayList에 Data 넣기
 			inputDatainArrayList();
-			//
+			// 시스템이 돌아갈 때 마다 카운트
 			orderItem.setOrderCount(orderItem.getOrderCount() + 1);
 
 			System.out.printf("\n계속 발권하시겠습니까?\n1. 티켓 발권\n2. 종료\n");
-
+			// 1. 티켓발권 - 새로운 티켓 발행, 한 영수증 안에 누적되는 값 2. 종료 - 다음 질문으로 이동 
 			orderItem.setContinueButton(sc.nextInt());
 
-			System.out.printf("\n");
-		} while (orderItem.getContinueButton() == StaticValue.CONTINUE_BUTTON);
+			System.out.println();
+		} while (orderItem.getContinueButton() == ConstantNumber.CONTINUE_BUTTON);
 
 		print.printOut(orderList, cal.totalTicketFee(orderList));
 
@@ -48,11 +47,12 @@ public class OutputSystem {
 		resetTicketSystem();
 		do {
 			continueButtonPrintOut();
-		} while (orderItem.getNewOrderButton() == StaticValue.NEW_ORDER_BUTTON);
+		} while (orderItem.getNewOrderButton() == ConstantNumber.NEW_ORDER_BUTTON);
 		System.out.println("티켓 구매를 완전히 종료합니다. 감사합니다.\n");
 		createCSV(writeCsv);
 	}
 
+	// csv file 만드는 메소드
 	void createCSV(WriteToCSV writeCsv) {
 		File csvFile = new File("C:\\Users\\YOUSHIN KIM\\Desktop\\LotteWorldTicketCSV\\Result.csv");
 		BufferedWriter bw = null;
@@ -80,7 +80,7 @@ public class OutputSystem {
 	public void resetTicketSystem() {
 		orderList = new ArrayList<OrderData>();
 		inputTicketSystem = new InputSystem();
-		cal = new Calculate();
+		cal = new Calculator();
 		orderItem = new OrderData();
 		print = new PrintOut();
 	}

@@ -3,6 +3,7 @@ package lotteworldticketing;
 import java.util.ArrayList;
 
 public class PrintOut {
+	OrderData orderItem = new OrderData();
 	
 	public void printOut(ArrayList<OrderData> orderList, int finalFee) {
 		System.out.printf("==========================LOTTE WORLD=============================\n\n");
@@ -10,17 +11,18 @@ public class PrintOut {
 		for (int index = 0; index < orderList.size(); index++) {
 			printDate(orderList.get(index).getOrderDate());
 			
-			printTicketType(orderList.get(index).getTicketType());
-
-			printTicketTimeType(orderList.get(index).getTicketTimeType());
+			printTicketType(orderList.get(index).getTicketTypeToString());
 			
-			printBasicFeeType(orderList.get(index).getBasicFeeType());
+			printTicketTimeType(orderList.get(index).getTicketTimeTypeToString());
+			
+			printBasicFeeType(orderList.get(index).getBasicFeeTypeToString());
 
 			printOrderListNumberOfTicket(orderList.get(index).getNumberOfTicket());
 			
 			printTotalFee(orderList.get(index).getTotalFee());
-
-			printAdvantageType(orderList.get(index).getAdvantageType());
+			
+			printAdvantageType(orderList.get(index).getAdvantageTypeToString());
+			System.out.println();
 		}
 		System.out.printf("\n입장료 총액은 %d원 입니다.\n", finalFee);
 		System.out.printf("==================================================================\n");
@@ -29,36 +31,21 @@ public class PrintOut {
 		System.out.printf("계속 진행하시겠습니까? 1. 새로운 주문 2. 프로그램 종료\n");
 		System.out.printf("\n");
 	}
+	
 	public void printDate (String orderDate) {
 		System.out.printf("%s\t", orderDate);
 	}
 	
-	public void printTicketType (int ticketType) {
-		if (ticketType == StaticValue.TICKET_TYPE_ONE) {
-			System.out.printf("종합이용권\t");
-		} else if (ticketType == StaticValue.TICKET_TYPE_TWO) {
-			System.out.printf("파크이용권\t");
-		}
+	public void printTicketType (String ticketType) {
+		System.out.printf("%s", ticketType);
 	}
 	
-	public void printTicketTimeType (int ticketTimeType) {
-		if (ticketTimeType == StaticValue.TICKET_TIME_TYPE_ONE) {
-			System.out.printf("1Day\t");
-		} else if (ticketTimeType == StaticValue.TICKET_TIME_TYPE_TWO) {
-			System.out.printf("After4\t");
-		}
+	public void printTicketTimeType (String ticketTimeType) {
+		System.out.printf("%s", ticketTimeType);
 	}
 	
-	public void printBasicFeeType (int basicFeeType) {
-		if (basicFeeType == StaticValue.BASIC_FEE_TYPE_ZERO) {
-			System.out.printf("어른\t");
-		} else if (basicFeeType == StaticValue.BASIC_FEE_TYPE_ONE) {
-			System.out.printf("청소년\t");
-		} else if (basicFeeType == StaticValue.BASIC_FEE_TYPE_TWO) {
-			System.out.printf("어린이\t");
-		} else if (basicFeeType == StaticValue.BASIC_FEE_TYPE_THREE) {
-			System.out.printf("베이비\t");
-		}
+	public void printBasicFeeType (String basicFeeType) {
+		System.out.printf("%s", basicFeeType);
 	}
 	
 	public void printOrderListNumberOfTicket (int numberOfTicket) {
@@ -69,22 +56,8 @@ public class PrintOut {
 		System.out.printf("%d\t", totalFee);
 	}
 	
-	public void printAdvantageType (int advantageType) {
-
-		if (advantageType == StaticValue.ADVANTAGE_TYPE_NOT_APPLICABLE) {
-			System.out.printf("*우대사항 없음\t");
-		} else if (advantageType == StaticValue.ADVANTAGE_TYPE_DISABLED) {
-			System.out.printf("*장애인 우대\t");
-		} else if (advantageType == StaticValue.ADVANTAGE_TYPE_MAN_OF_MERIT) {
-			System.out.printf("*국가유공자 우대\t");
-		} else if (advantageType == StaticValue.ADVANTAGE_TYPE_SOLDIER) {
-			System.out.printf("*휴가장병 우대\t");
-		} else if (advantageType == StaticValue.ADVANTAGE_TYPE_PREGNANT) {
-			System.out.printf("*임산부 우대\t");
-		} else if (advantageType == StaticValue.ADVATAGE_TYPE_CHILDREN_CARD) {
-			System.out.printf("*다둥이 행복카드 우대\t");
-		}
-		System.out.printf("\n");
+	public void printAdvantageType (String advantageType) {
+		System.out.printf("%s\t", advantageType);
 	}
 	
 }

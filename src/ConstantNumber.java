@@ -1,6 +1,6 @@
 package lotteworldticketing;
 
-public final class StaticValue {
+public final class ConstantNumber {
 	// 종합이용권의 1DAY
 	public static final int FULL_TICKET_1DAY_ADULT = 62000;
 	public static final int FULL_TICKET_1DAY_TEEN = 54000;
